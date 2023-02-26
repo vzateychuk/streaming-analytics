@@ -34,7 +34,7 @@ services:
   mariadb:
     image: mariadb:latest
     container_name: mariadb
-    restart: always
+    restart: on-failure
     volumes:
       - "E:/Users/vez/tmp/mariadb:/var/lib/mysql"
     ports:
@@ -43,3 +43,15 @@ services:
       MYSQL_ROOT_PASSWORD: streaming
       MYSQL_USER: streaming
       MYSQL_PASSWORD: streaming
+
+
+  redis:
+    image: 'bitnami/redis:latest'
+    container_name: redis
+    restart: on-failure
+    ports:
+      - 6379:6379
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    volumes:
+      - "E:/Users/vez/tmp/redis:/bitnami/redis/data"
